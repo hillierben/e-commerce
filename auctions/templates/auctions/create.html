@@ -1,0 +1,30 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}Add Listing{% endblock %}
+
+
+{% block body %}
+
+    <h1>Create a new listing</h1>
+    <fieldset class="newListing">
+        <form action="{% url 'create' %}" method="post">
+            {% csrf_token %}
+            <label>Item: <input type="text" name="item" placeholder="Item" autofocus></label>
+            <label>Description: </label><textarea rows="6" type="text" name="description" placeholder="Description"></textarea></label>
+            <label>Image: <input type="url" name="image" placeholder="Image URL"></label>
+            <label>Category: <select name="category">
+                <option disabled selected>Select Category</option>
+                <option value="Art">Art</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Garden">Garden</option>
+                <option value="Home">Home</option>
+                <option value="Toys">Toys</option>
+            </select></label>
+            <label>StartingBid: <input style="width: 20%;" type="number" step="0.01" name="starting_bid" placeholder="Starting Bid"></label>
+            <input style="width: 20%; margin-top: 3%;" type="submit" value="Add Listing">
+        </form>
+    </fieldset>
+
+
+{% endblock %}

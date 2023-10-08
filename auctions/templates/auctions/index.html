@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+
+    {% for auction in auctions %}
+    <fieldset class="fieldset_list">
+        <div class="act_photo">
+            <a href="{% url 'listing' auction.id %}"><img src="{{ auction.image }}" alt="{{ auction.item }}" width="200" height="150"></a>
+        </div>
+        <div class="act_list">
+            <ul style="list-style: none;">
+                <!--<li>ID: {{ auction.id }}</li>  Not Displaying this object -->
+                <li><a href="{% url 'listing' auction.id %}">Item: {{ auction.item }}</a></li>
+                <li>Description: {{ auction.description }}</li>
+                <li>Category: {{ auction.category }}</li>
+                {% if auction.max_bid > auction.starting_bid %}
+                    <li>Current Bid: £{{ auction.max_bid|floatformat:2 }}</li>
+                {% else %}
+                    <li>Minimum Bid: £{{ auction.starting_bid|floatformat:2 }}</li>
+                {% endif %} 
+                
+            </ul>
+        </div>
+    </fieldset>    
+    {% endfor %}
+
+{% endblock %}

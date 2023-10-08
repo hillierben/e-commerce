@@ -1,0 +1,93 @@
+body {
+    padding: 10px;
+}
+
+div {
+    border: none;
+}
+
+.act_list {
+    display: inline-block;
+}
+
+.act_photo {
+    display: inline-block;
+}
+
+fieldset {
+    border-color: black;
+    border: none ;
+    width: 40%;
+    padding: 2%;
+}
+
+.fieldset_list {
+    border-color: black;
+    border: none ;
+    width: 100%;
+    padding: 2%;
+}
+
+.details {
+    width:auto;
+    border: none;
+    position: relative;
+    left: -30px;
+}
+
+.listing_buttons {
+    position: relative;
+    left: 10px;
+}
+
+.listing {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+    top: 20px;
+}
+
+.photo_main {
+    display: inline-block;
+    position: relative;
+    top: -150px;
+    margin-left: 5%;   
+}
+
+.comments {
+
+    position: relative;
+    top: -90px;
+    margin-left: 5%;   
+}
+
+.newListing {
+    border-color: black;
+    border: dotted ;
+    width: 40%;
+    padding: 2%;
+}
+
+.newListing label {
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.newListing textarea {
+    display: block;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+.newListing input {
+    display: block;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+.cropped-image {
+    width: 100%;
+    object-fit: cover;
+    object-position: 150px 150px;
+    object-fit: cover;
+ }

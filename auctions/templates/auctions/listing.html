@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <div class="" name="image_dvi">
+        <img src="{{ listing.image }}" alt="{{ listing.item }}" width="400" height="300">
+    </div>
+
+
+    <div class="listing">
+        <h2 style="position: relative; left: 8px;">Listing: {{ listing.item }}</h2>
+        <ul style="list-style: none;">
+
+                <div class="details">
+                    
+                    <li><h6 style="display: inline-block;">Description:</h6> {{ listing.description }}</li>
+                    <li><h6 style="display: inline-block;">Category:</h6> {{ listing.category }}</li>
+                    {% if listing.max_bid > listing.starting_bid %}
+                        <li><h6 style="display: inline-block;">Current Bid:</h6> £{{ listing.max_bid|floatformat:2 }}</li>
+                    {% else %}
+                        <li><h6 style="display: inline-block;"></h6>Minimum Bid:</h6> £{{ listing.starting_bid|floatformat:2 }}</li>
+                    {% endif %}
+                </div> 
+            </ul>
+
+
+
+{% endblock %}

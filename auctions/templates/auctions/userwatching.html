@@ -1,0 +1,19 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h1>Watching</h1>
+    <br>
+    {% for listing in listings %} 
+
+    <div class="act_photo" style="padding: 30px;;">
+        <a href="{% url 'listing' listing.listing.id %}" style="display: block;">{{ listing.item }}</a>
+        <a href="{% url 'listing' listing.listing.id %}"><img src="{{ listing.image }}" alt="{{ listing.item }}" width="200" height="150"></a>
+    </div>
+
+
+
+    {% endfor %}
+
+      
+
+{% endblock %}

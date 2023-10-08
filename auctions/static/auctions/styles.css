@@ -1,0 +1,28 @@
+body {
+    padding: 10px;
+}
+
+fieldset {
+    border-color: black;
+    border: solid;
+    width: 40%;
+    padding: 1%;
+}
+
+.newListing label {
+    display: block;
+    margin: 10px 10px;
+}
+
+.newListing textarea {
+    display: block;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+.newListing input {
+    display: block;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+

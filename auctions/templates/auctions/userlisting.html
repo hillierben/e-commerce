@@ -1,0 +1,97 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+        <div class="photo_main" name="image_dvi">
+            <img src="{{ listing.image }}" alt="{{ listing.item }}" width="400" height="300">
+        </div>
+
+
+        <div class="listing">
+            <h2 style="position: relative; left: 8px;">Listing: {{ listing.item }}</h2>
+            <ul style="list-style: none;">
+
+                    <div class="details">
+                        
+                        <li><h6 style="display: inline-block;">Description:</h6> {{ listing.description }}</li>
+                        <li><h6 style="display: inline-block;">Category:</h6> {{ listing.category }}</li>
+                        {% if listing.max_bid > listing.starting_bid %}
+                            <li><h6 style="display: inline-block;">Current Bid:</h6> £{{ listing.max_bid|floatformat:2 }}</li>
+                        {% else %}
+                            <li><h6 style="display: inline-block;"></h6>Minimum Bid:</h6> £{{ listing.starting_bid|floatformat:2 }}</li>
+                        {% endif %}
+                    </div> 
+                </ul>
+                
+                <br>
+                <div class="listing_buttons">
+                    <form action="{% url 'watchlist' listing.id user.id %}" method="post">
+                        {% csrf_token %}
+                        <button name="watching" type="submit" value="{{ watching }}">{{ watching }}</button>
+                    </form>
+                </div>
+                
+                <br>
+                <div class="listing_buttons">
+                    <form action="{% url 'bid' listing.id user.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="bid" placeholder="Amount" inputmode="numeric" required>
+                        <input type="submit" value="Bid">
+                        {{ too_low }}
+                    </form>
+                    {% if message %} 
+                    <h4>{{ message }}</h4>
+                    {% endif %}
+                </div>
+                
+                <br>
+                <div class="listing_buttons">
+                    {% if user.username == person %}
+                    <form action="{% url 'userlisting' listing.id %}" method="post">
+                        {% csrf_token %}
+                        {% if listing.status == True %}
+                        <button id="open" name="status" type="submit" value="{{ listing.id }}">Close Listing</button>
+                        {% elif listing.status == False %} 
+                        <button id="close" name="status" type="submit" value="{{ listing.id }}">Open Listing</button>
+                        {% endif %} 
+                    </form>
+                    {% endif %}   
+                </div>
+                
+                <br>
+                <div class="listing_buttons">
+                    {% if listing.status == True %} 
+                    {% if user.username == highest_bidder %} 
+                    <h5>YOU ARE CURRENTLY THE HIGHEST BIDDER!</h5>
+                    {% endif %}
+                    {% elif listing.status == False %} 
+                    {% if user.username == highest_bidder %} 
+                    <h5>YOU HAVE WON THIS AUCTION!</h5>
+                    {% else %} 
+                    <h5>THIS AUCTION HAS CLOSED!</h5>
+                    {% endif %}
+                    {% endif %} 
+                </div>
+            </div>
+            
+            
+            <div class="comments">
+                <h3>Comments</h3>
+                <fieldset>
+                    <form action="{% url 'add_comment' listing.id %}" method="post">
+                        {% csrf_token %}
+                        <h6>Add Comment</h6>
+                        <textarea name="comment" rows="2" cols="70"></textarea>
+                        <input type="submit" value="Post Comment">
+                    </form>
+                </fieldset>
+                
+                {% for comment in comments %} 
+                <ul style="list-style: none;">
+                    <li>{{comment.date}}: {{ comment.comment }}</li>
+                </ul>
+                {% endfor %}
+            </div>
+        
+
+{% endblock %}

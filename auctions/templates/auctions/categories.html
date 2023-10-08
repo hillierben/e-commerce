@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h1>Categories</h1>
+
+    <ul style="list-style: none;">
+        <li><a href="{% url 'category' 'Art' %}"><h4>Art</h4></a></li>
+        <li><a href="{% url 'category' 'Electronics' %}"><h4>Electronics</h4></a></li>
+        <li><a href="{% url 'category' 'Fashion' %}"><h4>Fashion</h4></a></li>
+        <li><a href="{% url 'category' 'Garden' %}"><h4>Garden</h4></a></li>
+        <li><a href="{% url 'category' 'Home' %}"><h4>Home</h4></a></li>
+        <li><a href="{% url 'category' 'Toys' %}"><h4>Toys</h4></a></li>
+    </ul>
+    
+    
+
+{% endblock %}

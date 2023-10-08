@@ -1,0 +1,38 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h1>Your Listings</h1>
+    {% for listing in listings %} 
+    <fieldset class="fieldset_list">
+        <div class="act_photo">
+            <a href="{% url 'listing' listing.id %}"><img src="{{ listing.image }}" alt="{{ listing.item }}" width="200" height="150"></a>
+        </div>
+        <div class="act_list">
+            <ul style="list-style: none;">
+                <li><a href="{% url 'listing' listing.id %}">Item: {{ listing.item}}</a></li>
+                <li>Description: {{ listing.description}}</li>
+                <li>Category: {{ listing.category }}</li>
+                {% if listing.max_bid > listing.starting_bid|floatformat:2 %}
+                    <li>Current Bid: £{{ listing.max_bid|floatformat:2 }}</li>
+                {% else %}
+                    <li>Minimum Bid: £{{ listing.starting_bid }}</li>
+                {% endif %} 
+            </ul>
+        </div>
+
+        <div style="position: relative; left: 240px; top: -40px">
+            <form action="{% url 'mylistings' %}" method="post">
+                {% csrf_token %}
+                {% if listing.status == True %}
+                    <button id="open" name="status" type="submit" value="{{ listing.id }}">Close Listing</button>
+                {% elif listing.status == False %} 
+                    <button id="close" name="status" type="submit" value="{{ listing.id }}">Open Listing</button>
+                {% endif %} 
+            </form>
+        </div>
+    </fieldset>
+    {% endfor %}
+
+    
+
+{% endblock %}
